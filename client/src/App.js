@@ -5,19 +5,6 @@ import Main from './components/main';
 import Search from './components/search';
 import Saved from './components/saved';
 
-// class App extends Component {
-//   render() {
-//     return (
-//       <div>
-//       	<Nav />
-//       	<Main />
-//       	<Search />
-//       	<Saved />
-//       </div>
-//     );
-//   }
-// }
-
 const App = () =>
   <Router>
     <div>
