@@ -3,12 +3,29 @@ import "./search.css";
 import API from "../../utils/API.js";
 
 class Search extends Component{
+  constructor() {
+    super();
 
-	searchArticles = event => {
+    // Setting initial state to store the input values
+    this.state = {
+      topic: "",
+      startYr: "",
+      endYr: ""
+    };
+}
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+	searchArticles = (event) => {
 		event.preventDefault();
-		API.search()
+		console.log(this.state)
+		API.search(this.state.topic, this.state.startYr, this.state.endYr)
 			.then(function (response) {
-			console.log(response.data.results);
+			console.log(response.data.response.docs);
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -21,12 +38,27 @@ class Search extends Component{
 				<h1 className ="header">Search</h1>
 				<form action="" method="POST" role="form">
 					<div className="form-group">
-						<div className="header">Start Year</div>
-						<textarea className="form-control" rows="1" id="comment"></textarea>
 						<div className="header">Topic</div>
-						<textarea className="form-control" rows="1" id="comment"></textarea>
+						<textarea
+							className="form-control"
+							rows="1"
+	            onChange={this.handleInputChange}
+	            name="topic"
+	            placeholder="topic"></textarea>
+						<div className="header">Start Year</div>
+						<textarea
+							className="form-control"
+							rows="1"
+	            onChange={this.handleInputChange}
+	            name="startYr"
+	            placeholder="Start Year"></textarea>
 						<div className="header">End Year</div>
-						<textarea className="form-control" rows="1" id="comment"></textarea>
+						<textarea
+							className="form-control"
+							rows="1"
+	            onChange={this.handleInputChange}
+	            name="endYr"
+	            placeholder="End Year"></textarea>
 					</div>
 		      <button
           onClick={this.searchArticles}

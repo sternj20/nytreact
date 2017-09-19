@@ -1,11 +1,14 @@
 import axios from "axios";
 
 export default {
-	search: function() {
-		return axios.get("https://api.nytimes.com/svc/topstories/v2/home.json",
+	search: function(query, startYr, endYr) {
+		return axios.get("https://api.nytimes.com/svc/search/v2/articlesearch.json",
 		{
 			params: {
-				'api-key': "334eeb85a6c24552a8ca832b3e6dec37"
+				"api-key": "334eeb85a6c24552a8ca832b3e6dec37",
+				"q": query,
+				"begin-date": `${startYr}0101`,
+				"end-date": `${endYr}0101`
 			}
 		})
 	}
