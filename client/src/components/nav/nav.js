@@ -1,7 +1,8 @@
 import React from "react";
 import "./nav.css";
+import { Link } from "react-router-dom";
 
-const Nav = () => 
+const Nav = () =>
 	<nav className="navbar navbar-default" role="navigation">
 		<div className="container-fluid">
 			<div className="navbar-header">
@@ -11,22 +12,18 @@ const Nav = () =>
 					<span className="icon-bar"></span>
 					<span className="icon-bar"></span>
 				</button>
-				<a className="navbar-brand" href="#">NY TIMES REACT</a>
+				<span className ="navbar-brand">
+					<Link to ={"/"}>NY TIMES REACT</Link>
+				</span>
 			</div>
 
 			<div className="collapse navbar-collapse navbar-ex1-collapse">
-				<ul className="nav navbar-nav navbar-right">
-					<li className="dropdown">
-						<a href="#" className="dropdown-toggle" data-toggle="dropdown">Dropdown <b className="caret"></b></a>
-						<ul className="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li><a href="#">Separated link</a></li>
-						</ul>
-					</li>
+				<ul className="nav navbar-nav navbar-left">
+							<li><Link to={"/search/"}>Search</Link></li>
+							<li><Link to={"/saved/"}>Saved</Link></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 export default Nav;
+
