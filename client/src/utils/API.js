@@ -7,8 +7,8 @@ export default {
 			params: {
 				"api-key": "334eeb85a6c24552a8ca832b3e6dec37",
 				"q": query,
-				"begin-date": `${startYr}0101`,
-				"end-date": `${endYr}0101`
+				"begin_date": `${startYr}0101`,
+				"end_date": `${endYr}0101`
 			}
 		})
 	}
