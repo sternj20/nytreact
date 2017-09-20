@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./search.css";
 import API from "../../utils/API.js";
+import SearchResults from "../searchresults";
 
 class Search extends Component{
   constructor() {
@@ -10,7 +11,8 @@ class Search extends Component{
     this.state = {
       topic: "",
       startYr: "",
-      endYr: ""
+      endYr: "",
+      results: []
     };
 }
   handleInputChange = event => {
@@ -22,11 +24,15 @@ class Search extends Component{
 
 	searchArticles = (event) => {
 		event.preventDefault();
-		console.log(this.state)
+		// console.log(this.state)
 		API.search(this.state.topic, this.state.startYr, this.state.endYr)
-			.then(function (response) {
-			console.log(response.data.response.docs);
-		})
+			.then(res =>{
+							console.log(res.data.response.docs);
+			// this.setState({results:res.data})
+			// console.log(this.state)
+			}
+
+		)
 		.catch(function (error) {
 			console.log(error);
 		});
@@ -66,6 +72,9 @@ class Search extends Component{
           Search Articles
         	</button>
 				</form>
+
+					<SearchResults 
+						 />
 			</div>
 		)
 	}
