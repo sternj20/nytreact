@@ -4,7 +4,7 @@ import "./searchresults.css";
 const SearchResults = props =>
 
 	<div>
-		ff
+		{props.children}
 	</div>
 
 export default SearchResults;

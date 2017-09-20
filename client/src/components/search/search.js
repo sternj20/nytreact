@@ -28,8 +28,8 @@ class Search extends Component{
 		API.search(this.state.topic, this.state.startYr, this.state.endYr)
 			.then(res =>{
 							console.log(res.data.response.docs);
-			// this.setState({results:res.data})
-			// console.log(this.state)
+			this.setState({results:res.data.response.docs})
+			console.log(this.state)
 			}
 
 		)
@@ -72,9 +72,16 @@ class Search extends Component{
           Search Articles
         	</button>
 				</form>
-
-					<SearchResults 
-						 />
+					{this.state.results.map(result => (
+						<SearchResults>
+							<div className="panel panel-default">
+								<div className="panel-body">
+								<a href={result.web_url} target="_blank">{result.snippet}</a>
+								</div>
+							</div>
+						</SearchResults>
+						))
+					}
 			</div>
 		)
 	}
