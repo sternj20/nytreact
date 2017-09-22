@@ -22,12 +22,22 @@ class Search extends Component{
     });
   };
 
+  handleFormSubmit = event => {
+  	event.preventDefault();
+  		API.saveArticle({
+  			title: 'hi',
+  			content: 'hi',
+  			date: '19990101',
+  			url: 'www.google.com'
+  		})
+  			.then(res => console.log('done'))
+        .catch(err => console.log(err));
+  }
 	searchArticles = (event) => {
 		event.preventDefault();
 		// console.log(this.state)
 		API.search(this.state.topic, this.state.startYr, this.state.endYr)
 			.then(res =>{
-							console.log(res.data.response.docs);
 			this.setState({results:res.data.response.docs})
 			console.log(this.state)
 			}
@@ -67,8 +77,7 @@ class Search extends Component{
 	            placeholder="End Year"></textarea>
 					</div>
 		      <button
-          onClick={this.searchArticles}
-        	>
+          	onClick={this.searchArticles}>
           Search Articles
         	</button>
 				</form>
@@ -77,6 +86,10 @@ class Search extends Component{
 							<div className="panel panel-default">
 								<div className="panel-body">
 								<a href={result.web_url} target="_blank">{result.snippet}</a>
+								<button
+									onClick={this.handleFormSubmit}>
+									Save article
+								</button>
 								</div>
 							</div>
 						</SearchResults>

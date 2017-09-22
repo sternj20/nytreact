@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default {
-	search: function(query, startYr, endYr) {
+	search: (query, startYr, endYr) => {
 		return axios.get("https://api.nytimes.com/svc/search/v2/articlesearch.json",
 		{
 			params: {
@@ -11,6 +11,14 @@ export default {
 				"end_date": `${endYr}0101`
 			}
 		})
+	},
+
+	getArticles: () => {
+		return axios.get("/api/articles")
+	},
+
+	saveArticle: (data) => {
+		return axios.post("/api/article", data)
 	}
 }
 
