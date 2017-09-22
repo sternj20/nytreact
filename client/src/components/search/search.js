@@ -23,12 +23,14 @@ class Search extends Component{
   };
 
   handleFormSubmit = event => {
+  	let id = event.target.id
+  	let article = this.state.results[id]
+  	console.log(id)
   	event.preventDefault();
   		API.saveArticle({
-  			title: 'hi',
+  			title: article.snippet,
   			content: 'hi',
-  			date: '19990101',
-  			url: 'www.google.com'
+  			url: article.web_url
   		})
   			.then(res => console.log('done'))
         .catch(err => console.log(err));
@@ -81,12 +83,13 @@ class Search extends Component{
           Search Articles
         	</button>
 				</form>
-					{this.state.results.map(result => (
+					{this.state.results.map((result, index) => (
 						<SearchResults>
 							<div className="panel panel-default">
 								<div className="panel-body">
 								<a href={result.web_url} target="_blank">{result.snippet}</a>
 								<button
+									id={index}
 									onClick={this.handleFormSubmit}>
 									Save article
 								</button>

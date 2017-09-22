@@ -14,11 +14,11 @@ export default {
 	},
 
 	getArticles: () => {
-		return axios.get("/api/articles")
+		return axios.get("/api/article")
 	},
 
 	saveArticle: (data) => {
 		return axios.post("/api/article", data)
 	}
-}
+};
 

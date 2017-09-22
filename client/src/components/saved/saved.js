@@ -10,11 +10,13 @@ class Saved extends Component {
 	}
 	componentDidMount(){
 		this.getSaved()
+		console.log(this.state)
 	}
 
 	getSaved = () => {
 		API.getArticles()
 			.then(res =>{
+				console.log(res.data)
 				this.setState({	saved: res.data})
 				console.log(this.state)
 			}
@@ -24,8 +26,14 @@ class Saved extends Component {
 	render() {
 		return (
 			<div>
-				{this.state.saved}
-			</div>
+				{this.state.saved.map(article => (
+					<div className="panel panel-default">
+						<div className="panel-body">
+							<a href={article.url} target="_blank">{article.title}</a>
+						</div>
+					</div>
+					))}
+				</div>
 		)
 	}
 }
